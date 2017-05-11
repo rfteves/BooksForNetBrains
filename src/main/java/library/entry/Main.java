@@ -10,7 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import library.data.Book;
@@ -24,7 +27,7 @@ import org.apache.commons.io.FileUtils;
  */
 public class Main {
 
-    public final String[] MENU_OPTIONS = {"1) View all books", "2) Add a book", "3) Edit a book", "4) Search for a book", "5) Save and exit"};
+    public final String[] MENU_OPTIONS = {"View all books", "Add a book", "Edit a book", "Search for a book", "Save and exit"};
     public final static File DATABASE_NAME = new File("Books.json");
     private final static Gson g = new Gson();
 
@@ -144,8 +147,8 @@ public class Main {
                     ConsoleHelper.printMessage("");
                     ConsoleHelper.printMessage("==== Book Manager ====");
                     ConsoleHelper.printMessage("");
-                    List<String> menuOtpions = Arrays.asList(MENU_OPTIONS);
-                    menuOtpions.stream().forEach(mo -> ConsoleHelper.printMessage(mo, 1));
+                    //List<String> menuOptions = Arrays.asList(MENU_OPTIONS);
+                    Main.createMenuOption(MENU_OPTIONS).forEach(ConsoleHelper::printOption);
                     while (true) {
                         ConsoleHelper.printMessage("");
                         ConsoleHelper.printPrompt("Choose [1-5]");
@@ -224,5 +227,14 @@ public class Main {
                 });
             }
         }
+    }
+
+    static Map<Integer, String> createMenuOption(String[] options) {
+        Map<Integer, String> values = new LinkedHashMap<>();
+        int ordinal = 0;
+        for (String option : options) {
+            values.put(++ordinal, option);
+        }
+        return values;
     }
 }
