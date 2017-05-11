@@ -8,6 +8,7 @@ package library.entry;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -51,7 +52,7 @@ public class Main {
                         ConsoleHelper.printMessage("");
                         ConsoleHelper.printMessage("==== Search ====");
                         ConsoleHelper.printMessage("");
-                        ConsoleHelper.printMessage("Type in one or more keywords to search for");
+                        ConsoleHelper.printMessage("Type in one or more keywords to search for; to return press <Enter>.");
                         ConsoleHelper.printMessage("");
                         ConsoleHelper.printPrompt("Search");
                         String keys = ConsoleHelper.getString();
@@ -59,9 +60,7 @@ public class Main {
                             break;
                         } else {
                             selected.clear();
-                            books.getBook().stream().filter(b -> b.getAuthor().toLowerCase().contains(keys.toLowerCase())
-                                    || b.getTitle().toLowerCase().contains(keys.toLowerCase())
-                                    || b.getDescription().toLowerCase().contains(keys.toLowerCase())).forEach(selected::add);
+                            books.getBook().stream().filter(b -> Books.filter(b, keys)).forEach(selected::add);
                             ConsoleHelper.printMessage("");
                             if (selected.isEmpty()) {
                                 ConsoleHelper.printMessage("The search did not return a match.");
@@ -147,7 +146,6 @@ public class Main {
                     ConsoleHelper.printMessage("");
                     ConsoleHelper.printMessage("==== Book Manager ====");
                     ConsoleHelper.printMessage("");
-                    //List<String> menuOptions = Arrays.asList(MENU_OPTIONS);
                     Main.createMenuOption(MENU_OPTIONS).forEach(ConsoleHelper::printOption);
                     while (true) {
                         ConsoleHelper.printMessage("");

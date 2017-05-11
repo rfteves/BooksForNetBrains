@@ -32,4 +32,10 @@ public class Books {
     public void setBook(List<Book> book) {
         this.book = book;
     }
+    
+    public static boolean filter(Book b, String key) {
+        return b.getAuthor().toLowerCase().contains(key.toLowerCase())
+                                    || b.getTitle().toLowerCase().contains(key.toLowerCase())
+                                    || b.getDescription().toLowerCase().contains(key.toLowerCase());
+    }
 }
