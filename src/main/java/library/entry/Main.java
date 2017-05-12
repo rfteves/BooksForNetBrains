@@ -185,8 +185,6 @@ public class Main {
                     break;
                 default:
                     ConsoleHelper.printMessage("");
-                    ConsoleHelper.printError("Sorry, invalid choice. Please enter [1-5].");
-                    ConsoleHelper.printMessage("");
             }
         }
     }
@@ -210,7 +208,7 @@ public class Main {
             ConsoleHelper.printMessage("");
             ConsoleHelper.printMessage("To view details enter the book ID, to return press <Enter>");
             ConsoleHelper.printMessage("");
-            books.stream().forEach(mo -> ConsoleHelper.printMessage(String.format("[%s] %s", "" + mo.getId(), mo.getTitle()), 1));
+            books.stream().forEach(o -> ConsoleHelper.printBookSelection(o.getId(), o.getTitle()));
             ConsoleHelper.printMessage("");
             ConsoleHelper.printPrompt("Book ID");
             Integer selectedId = ConsoleHelper.getInt(true);

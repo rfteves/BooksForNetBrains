@@ -79,6 +79,10 @@ public class ConsoleHelper {
         System.out.println("\t" + option + ") " + description);
     }
 
+    public static void printBookSelection(int option, String description) {
+        System.out.println("\t[" + option + "] " + description);
+    }
+
     public static void printPrompt(String text) {
         printPrompt(text, 0);
     }
